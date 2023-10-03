@@ -8,9 +8,9 @@ namespace Controllers
         [SerializeField] private int _damage;
         [SerializeField] private float _speed;
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private Collider2D _selfCollider;
+        //[SerializeField] private Collider2D _selfCollider;
 
-        public Collider2D Collider => _selfCollider;
+        //public Collider2D Collider => _selfCollider;
         
         public Projectile Setup(Vector2 direction)
         {
