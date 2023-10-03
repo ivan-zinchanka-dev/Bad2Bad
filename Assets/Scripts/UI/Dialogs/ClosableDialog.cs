@@ -1,6 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Dialogs
@@ -10,7 +8,7 @@ namespace UI.Dialogs
         [SerializeField] private Button _closeButton;
         [SerializeField] private Button _hideArea;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             _closeButton.onClick.AddListener(Close);
             if (_hideArea != null) _hideArea.onClick.AddListener(Close);
@@ -21,7 +19,7 @@ namespace UI.Dialogs
             Destroy(gameObject);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             _closeButton.onClick.RemoveListener(Close);
             if (_hideArea != null) _hideArea.onClick.RemoveListener(Close);

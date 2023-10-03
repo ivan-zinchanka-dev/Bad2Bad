@@ -1,12 +1,23 @@
 ﻿using System;
 using DataModels;
+using Factories;
 using UnityEngine;
+using Zenject;
 
 namespace Controllers
 {
     public class InventoryController : MonoBehaviour
     {
         [SerializeField] private Inventory _inventory;
+
+        private DialogsFactory _dialogsFactory;
+        
+        [Inject]
+        private void InjectDependencies(DialogsFactory dialogsFactory)
+        {
+            Debug.Log("Inject");
+            _dialogsFactory = dialogsFactory;
+        }
 
         public void AddItem(InventoryItem item, int count)
         {
@@ -28,8 +39,7 @@ namespace Controllers
 
         public void OpenDialog()
         {
-            
-            
+            _dialogsFactory.ShowInventoryDialog();
         }
     }
 }
