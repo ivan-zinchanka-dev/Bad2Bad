@@ -15,7 +15,6 @@ namespace Controllers
         [Inject]
         private void InjectDependencies(DialogsFactory dialogsFactory)
         {
-            Debug.Log("Inject");
             _dialogsFactory = dialogsFactory;
         }
 
@@ -31,9 +30,10 @@ namespace Controllers
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent<InventoryItemView>(out InventoryItemView itemView))
+            if (other.TryGetComponent<CollectableItem>(out CollectableItem collectableItem))
             {
-                AddItem(itemView.Item, itemView.Count); ;
+                AddItem(collectableItem.Item, collectableItem.Count);
+                collectableItem.Collect();
             }
         }
 
