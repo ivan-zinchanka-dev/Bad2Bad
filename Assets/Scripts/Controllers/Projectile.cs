@@ -18,10 +18,11 @@ namespace Controllers
             return this;
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.TryGetComponent<HealthBody>(out HealthBody healthBody))
             {
+                Debug.Log("Yes");
                 healthBody.MakeDamage(_damage);
                 SelfDestroy();
             }

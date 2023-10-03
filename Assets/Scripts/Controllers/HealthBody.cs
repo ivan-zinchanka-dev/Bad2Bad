@@ -71,6 +71,10 @@ namespace Controllers
                 slider.maxValue = _maxHealth;
                 slider.value = _health;
             }
+            else if (_view is Image image && image.type == Image.Type.Filled)
+            {
+                image.fillAmount = _health / (float)_maxHealth;
+            }
             else if (_view is TextMeshProUGUI textMesh)
             {
                 textMesh.text = string.Format("{0:d}/{1:d}", _health, _maxHealth);
