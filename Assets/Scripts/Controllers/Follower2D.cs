@@ -29,7 +29,8 @@ namespace Controllers
             
             _cachedPosition = transform.position;
             _cachedPosition = Vector2.Lerp(_cachedPosition, targetPosition - _delta, interpolation);
-            transform.position = _cachedPosition;
+            
+            transform.position = new Vector3(_cachedPosition.x, _cachedPosition.y, transform.position.z);
         }
     }
 }
