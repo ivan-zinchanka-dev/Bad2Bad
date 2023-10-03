@@ -15,7 +15,7 @@ namespace Controllers
         {
             _motion = _motionJoystick.Direction * _maxSpeed;
 
-            _rigidbody.velocity = _motion;
+            _rigidbody.MovePosition(transform.position + (Vector3)_motion);
             
             if (_motion != Vector2.zero)
             {
@@ -23,7 +23,7 @@ namespace Controllers
             }
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
             MoveByJoystick();
         }
