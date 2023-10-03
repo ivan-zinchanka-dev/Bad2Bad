@@ -27,16 +27,13 @@ namespace Controllers
         }
 
         [EasyButtons.Button]
-        public bool ShootIfReady()
+        public void ShootIfReady()
         {
             if (_timeBetweenShots > _shootingCooldown)
             {
                 Shoot();
                 _timeBetweenShots = 0.0f;
-                return true;
             }
-
-            return false;
         }
 
         private void Update()

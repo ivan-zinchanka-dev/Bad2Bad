@@ -4,7 +4,6 @@ namespace Controllers
 {
     public class MovingController : MonoBehaviour
     {
-        
         [SerializeField] private float _maxSpeed = 3.0f;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Joystick _motionJoystick;
