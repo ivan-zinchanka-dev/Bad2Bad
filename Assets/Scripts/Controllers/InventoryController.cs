@@ -39,7 +39,7 @@ namespace Controllers
 
         public void OpenDialog()
         {
-            _dialogsFactory.ShowInventoryDialog();
+            _dialogsFactory.ShowInventoryDialog().SetModel(_inventory);
         }
     }
 }

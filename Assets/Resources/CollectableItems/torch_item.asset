@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad5f7dc746f4ebbb17c8fd09d9659a9, type: 3}
   m_Name: torch_item
   m_EditorClassIdentifier: 
-  _name: torch
-  _icon: {fileID: 21300000, guid: 3887b8861a4f9b0418e58833c13adf8c, type: 3}
+  <NameKey>k__BackingField: torch
+  <Icon>k__BackingField: {fileID: 21300000, guid: 3887b8861a4f9b0418e58833c13adf8c, type: 3}

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DataModels
 {
     [Serializable]
-    public class Inventory
+    public class Inventory : IEnumerable<KeyValuePair<string, int>>
     {
         private Dictionary<string, int> _counts = new Dictionary<string, int>();
 
@@ -55,5 +56,17 @@ namespace DataModels
                 return true;
         }
 
+        public IEnumerator<KeyValuePair<string, int>> GetEnumerator()
+        {
+            foreach (var pair in _counts)
+            {
+                yield return pair;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

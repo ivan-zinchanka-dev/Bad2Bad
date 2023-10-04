@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad5f7dc746f4ebbb17c8fd09d9659a9, type: 3}
   m_Name: bandage_item
   m_EditorClassIdentifier: 
-  _name: bandage
-  _icon: {fileID: 21300000, guid: d3380ed941ff5fb4899cdefa23f32996, type: 3}
+  <NameKey>k__BackingField: bandage
+  <Icon>k__BackingField: {fileID: 21300000, guid: d3380ed941ff5fb4899cdefa23f32996, type: 3}
