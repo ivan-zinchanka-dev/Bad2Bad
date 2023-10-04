@@ -1,5 +1,6 @@
 ﻿using UI.Dialogs;
 using UnityEngine;
+using Zenject;
 
 namespace Factories
 {
@@ -11,9 +12,19 @@ namespace Factories
         [SerializeField] private InventoryDialog _inventoryDialogPrefab;
         //[] other dialogs
 
+        private DiContainer _diContainer;
+        
+        [Inject]
+        private void InjectDependencies(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
+
         public InventoryDialog ShowInventoryDialog()
         {
-            return Instantiate<InventoryDialog>(_inventoryDialogPrefab, _dialogCanvas.transform, false);
+            return _diContainer.InstantiatePrefabForComponent<InventoryDialog>(_inventoryDialogPrefab, _dialogCanvas.transform);
+            
+            //return Instantiate<InventoryDialog>(_inventoryDialogPrefab, _dialogCanvas.transform, false);
         }
     }
 }

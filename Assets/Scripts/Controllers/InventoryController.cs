@@ -20,12 +20,12 @@ namespace Controllers
 
         public void AddItem(InventoryItem item, int count)
         {
-            _inventory.AddItem(item.name, count);
+            _inventory.AddItem(item.NameKey, count);
         }
 
         public void RemoveItem(InventoryItem item, int count)
         {
-            _inventory.RemoveItem(item.name, count);
+            _inventory.RemoveItem(item.NameKey, count);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
