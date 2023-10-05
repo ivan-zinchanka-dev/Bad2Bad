@@ -85,9 +85,10 @@ MonoBehaviour:
   _shootingRange: 7
   _movingSpeed: 3
   _minDistance: 5
+  _onDeathLoot: {fileID: 11400000, guid: 7c292485a1b4dbe42abcc45c146e6b9a, type: 2}
   _healthBody: {fileID: 4881449569070084105}
-  _shootingController: {fileID: 2367188152286374717}
   _rigidbody: {fileID: 4881449569070084106}
+  _shootingController: {fileID: 2367188152286374717}
 --- !u!114 &2367188152286374717
 MonoBehaviour:
   m_ObjectHideFlags: 0

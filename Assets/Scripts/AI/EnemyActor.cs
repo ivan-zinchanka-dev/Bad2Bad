@@ -1,10 +1,9 @@
-﻿using System;
-using Controllers;
+﻿using Controllers;
+using DataModels;
 using Factories;
 using Management;
 using UnityEngine;
 using NPBehave;
-using UnityEngine.Serialization;
 using Zenject;
 using Action = NPBehave.Action;
 
@@ -16,29 +15,27 @@ namespace AI
         [SerializeField] private float _shootingRange;
         [SerializeField] private float _movingSpeed;
         [SerializeField] private float _minDistance;
+        [SerializeField] private InventoryItem _onDeathLoot;
         
+        [Space]
         [SerializeField] private HealthBody _healthBody;
-        [SerializeField] private ShootingController _shootingController;
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private ShootingController _shootingController;
         
         private GameLevelManager _gameLevelManager;
-        private ProjectilesFactory _projectilesFactory;
+        private CollectablesFactory _collectablesFactory;
         
         private Root _behaviorTree;
-
-        
         
         [Inject]
-        private void InjectDependencies(GameLevelManager gameLevelManager, ProjectilesFactory projectilesFactory)
+        private void InjectDependencies(GameLevelManager gameLevelManager, CollectablesFactory collectablesFactory)
         {
             _gameLevelManager = gameLevelManager;
-            _projectilesFactory = projectilesFactory;
+            _collectablesFactory = collectablesFactory;
         }
         
         private bool IsAlive()
         {
-            Debug.Log("IsAlive: " + (_healthBody.Health > 0));
-            
             return _healthBody.Health > 0;
         }
         
@@ -74,28 +71,21 @@ namespace AI
 
         private void StartShootingThePlayer()
         {
-            Debug.Log("Start shooting");
-            
             Transform playerTransform = _gameLevelManager.Player.transform;
             _shootingController.StartShooting(playerTransform);
         }
         
         private void StopShootingThePlayer()
         {
-            Debug.Log("Stop shooting");
-            
             _shootingController.StopShooting();
         }
 
         private void SelfDestroy()
         {
             Destroy(gameObject);
+            _collectablesFactory.CreateCollectableItem(_onDeathLoot, transform.position);
         }
-
-        public void TargetNode()
-        {
-            Debug.Log("TargetNode");
-        }
+        
         
         void Start()
         {
@@ -105,8 +95,6 @@ namespace AI
                 new Selector(
                     new Condition(IsAlive, new Selector(
                         new Condition(SeesThePlayer, new Sequence(
-                            
-                            //new Action(()=>Debug.Log("Traget"))
                             
                             new Action(MoveToPlayer),
                             new Selector(

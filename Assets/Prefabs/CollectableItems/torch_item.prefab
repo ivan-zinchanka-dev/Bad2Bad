@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryItem: {fileID: 11400000, guid: ef42ae140e10b73459dd199e677ee95d, type: 2}
   _count: 1
+  _spriteRenderer: {fileID: 8750859257898587300}
 --- !u!212 &8750859257898587300
 SpriteRenderer:
   m_ObjectHideFlags: 0
