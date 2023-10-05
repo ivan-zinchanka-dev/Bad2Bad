@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Collectables
-    uniqueID: 995875881
+  - name: Foreground
+    uniqueID: 1781544991
+    locked: 0
+  - name: UILocal
+    uniqueID: 1453360387
+    locked: 0
+  - name: HUD
+    uniqueID: 2437016245
     locked: 0

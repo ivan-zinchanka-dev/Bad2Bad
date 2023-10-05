@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Controllers;
+using DataModels;
+using Factories;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -11,37 +13,57 @@ namespace Management
         [SerializeField] private GameObject _enemyPrefab;
         
         [SerializeField] private GameObject _player;
-        [SerializeField] private List<CollectableItem> _collectableItems;
+        [SerializeField] private List<InventoryItem> _loot;
 
+        [SerializeField] private Rect _lootSpawnField;
         [SerializeField] private Rect _enemySpawnField;
-
+        
         private DiContainer _diContainer;
+        private CollectablesFactory _collectablesFactory;
         
         public GameObject Player => _player;
 
         [Inject]
-        private void InjectDependencies(DiContainer diContainer)
+        private void InjectDependencies(DiContainer diContainer, CollectablesFactory collectablesFactory)
         {
             _diContainer = diContainer;
+            _collectablesFactory = collectablesFactory;
         }
-
-        private Vector2 GetRandomPosition()
+        
+        
+        private T GetRandomItem<T>(List<T> collection)
+        {
+            return collection[Random.Range(0, collection.Count)];
+        }
+        
+        private Vector2 GetRandomPosition(Rect field)
         {
             return new Vector2(
-                Random.Range(_enemySpawnField.xMin, _enemySpawnField.xMax),
-                Random.Range(_enemySpawnField.yMin, _enemySpawnField.yMax));
+                Random.Range(field.xMin, field.xMax),
+                Random.Range(field.yMin, field.yMax));
+        }
+        
+        private void SpawnLoot()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                _collectablesFactory.CreateCollectableItem(GetRandomItem<InventoryItem>(_loot),
+                    GetRandomPosition(_lootSpawnField));
+            }
         }
 
         private void SpawnEnemies()
         {
             for (int i = 0; i < 3; i++)
             {
-                _diContainer.InstantiatePrefab(_enemyPrefab, GetRandomPosition(), Quaternion.identity, null);
+                _diContainer.InstantiatePrefab(_enemyPrefab, 
+                    GetRandomPosition(_enemySpawnField), Quaternion.identity, null);
             }
         }
 
         private void Start()
         {
+            SpawnLoot();
             SpawnEnemies();
         }
     }
