@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using Controllers;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
 namespace Factories
 {
     public class ProjectilesFactory : MonoBehaviour
     {
         [SerializeField] private List<ProjectilePoolData> _poolsData;
-
-        /*[SerializeField] private Projectile _bulletPrefab;
-        [SerializeField] private Projectile _acidPrefab;*/
-
+        
         [Serializable]
         public struct ProjectilePoolData
         {
@@ -34,7 +30,6 @@ namespace Factories
                         OnTakeFromPool, OnReturnedToPool, null, 
                         true, data.InitialPoolCapacity));
             }
-            
         }
 
         private static void OnTakeFromPool(Projectile projectile)
@@ -55,7 +50,7 @@ namespace Factories
                 projectile.transform.position = spawnPosition;
                 projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, motionDirection);
                 projectile.Setup(motionDirection);
-                projectile.SetPool(pool);
+                projectile.SetPool(pool, 10.0f);
                 return projectile;
             }
             else
@@ -63,23 +58,5 @@ namespace Factories
                 return null;
             }
         }
-
-        private Projectile CreateProjectile(Projectile prefab, Vector3 spawnPosition, Vector3 motionDirection)
-        {
-            return Instantiate(prefab, spawnPosition, 
-                Quaternion.LookRotation(Vector3.forward, motionDirection)).Setup(motionDirection);
-        }
-        
-        /*public Projectile CreateBullet(Vector3 spawnPosition, Vector3 motionDirection)
-        {
-            return CreateProjectile(spawnPosition, motionDirection, _bulletPrefab);
-        }
-        
-        public Projectile CreateAcid(Vector3 spawnPosition, Vector3 motionDirection)
-        {
-            return CreateProjectile(spawnPosition, motionDirection, _acidPrefab);
-        }*/
-        
-        
     }
 }
