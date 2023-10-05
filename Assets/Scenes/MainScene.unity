@@ -30533,8 +30533,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1120178746}
     m_Modifications:
     - target: {fileID: 3071761053406657607, guid: 317ee3710e542a54381c0a192e801e33, type: 3}
-      propertyPath: _movingSpeed
-      value: 3
+      propertyPath: _minDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4881449569070084105, guid: 317ee3710e542a54381c0a192e801e33, type: 3}
       propertyPath: _view

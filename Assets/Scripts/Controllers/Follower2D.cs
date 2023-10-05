@@ -23,14 +23,26 @@ namespace Controllers
 
         private void Update()
         {
-            float interpolation = _interpolationSpeed * Time.deltaTime;
+            if (_target == null)
+            {
+                SelfDestroy();
+            }
+            else
+            {
+                float interpolation = _interpolationSpeed * Time.deltaTime;
             
-            Vector2 targetPosition = _target.position;
+                Vector2 targetPosition = _target.position;
             
-            _cachedPosition = transform.position;
-            _cachedPosition = Vector2.Lerp(_cachedPosition, targetPosition - _delta, interpolation);
+                _cachedPosition = transform.position;
+                _cachedPosition = Vector2.Lerp(_cachedPosition, targetPosition - _delta, interpolation);
             
-            transform.position = new Vector3(_cachedPosition.x, _cachedPosition.y, transform.position.z);
+                transform.position = new Vector3(_cachedPosition.x, _cachedPosition.y, transform.position.z);
+            }
+        }
+
+        private void SelfDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

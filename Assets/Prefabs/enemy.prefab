@@ -83,7 +83,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewingRange: 9.75
   _shootingRange: 7
-  _movingSpeed: 0
+  _movingSpeed: 3
+  _minDistance: 1.5
   _healthBody: {fileID: 4881449569070084105}
   _shootingController: {fileID: 2367188152286374717}
   _rigidbody: {fileID: 4881449569070084106}

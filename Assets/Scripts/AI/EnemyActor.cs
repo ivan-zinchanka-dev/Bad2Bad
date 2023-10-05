@@ -1,10 +1,12 @@
-﻿using Controllers;
+﻿using System;
+using Controllers;
 using Factories;
 using Management;
 using UnityEngine;
 using NPBehave;
 using UnityEngine.Serialization;
 using Zenject;
+using Action = NPBehave.Action;
 
 namespace AI
 {
@@ -12,7 +14,8 @@ namespace AI
     {
         [SerializeField] private float _viewingRange;
         [SerializeField] private float _shootingRange;
-        [FormerlySerializedAs("_motionSpeed")] [SerializeField] private float _movingSpeed;
+        [SerializeField] private float _movingSpeed;
+        [SerializeField] private float _minDistance;
         
         [SerializeField] private HealthBody _healthBody;
         [SerializeField] private ShootingController _shootingController;
@@ -58,7 +61,15 @@ namespace AI
             Vector3 movingDirection = (playerTransform.position - transform.position).normalized;
             
             transform.rotation = Quaternion.LookRotation(Vector3.forward, movingDirection);
-            _rigidbody.velocity = movingDirection * _movingSpeed;
+
+            if (Vector2.Distance(playerTransform.position, transform.position) > _minDistance)
+            {
+                _rigidbody.velocity = movingDirection * _movingSpeed;
+            }
+            else
+            {
+                _rigidbody.velocity = Vector2.zero;
+            }
         }
 
         private void StartShootingThePlayer()
@@ -76,9 +87,9 @@ namespace AI
             _shootingController.StopShooting();
         }
 
-        public void SelfDestroy()
+        private void SelfDestroy()
         {
-            Debug.Log("SelfDestroy");
+            Destroy(gameObject);
         }
 
         public void TargetNode()
@@ -114,6 +125,14 @@ namespace AI
             
             
             _behaviorTree.Start();
+        }
+
+        private void OnDestroy()
+        {
+            if (_behaviorTree != null && _behaviorTree.CurrentState == Node.State.ACTIVE)
+            {
+                _behaviorTree.Stop();
+            }
         }
     }
     
