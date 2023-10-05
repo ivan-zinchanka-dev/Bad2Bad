@@ -13,7 +13,7 @@ namespace DataModels
 
         public Inventory()
         {
-            _counts = DataUtility.Get<Dictionary<string, int>>(DatabaseKey);
+            _counts = DataUtility.Get<Dictionary<string, int>>(DatabaseKey) ?? new Dictionary<string, int>();
         }
         
         public void AddItem(string itemName, int count = 1)

@@ -52,8 +52,6 @@ namespace Controllers
             }
         }
         
-        
-
         public void SetView(UIBehaviour view)
         {
             _view = view;

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
-namespace Controllers
+namespace Controllers.Common
 {
     public class Follower2D : MonoBehaviour
     {
         [SerializeField] private Transform _target;
         [SerializeField] [Range(0.0f, 100.0f)] private float _interpolationSpeed = 100.0f;
-
+        [SerializeField] private bool _destroyWithTarget;
+        
         private Vector2 _cachedPosition;
         private Vector2 _delta;
-
+        private Vector3 _cached3DPosition;
+        
         public void SetTarget(Transform target)
         {
             _target = target;
@@ -25,7 +27,12 @@ namespace Controllers
         {
             if (_target == null)
             {
-                SelfDestroy();
+                if (_destroyWithTarget)
+                {
+                    SelfDestroy();
+                }
+                else 
+                    return;
             }
             else
             {
@@ -35,8 +42,12 @@ namespace Controllers
             
                 _cachedPosition = transform.position;
                 _cachedPosition = Vector2.Lerp(_cachedPosition, targetPosition - _delta, interpolation);
-            
-                transform.position = new Vector3(_cachedPosition.x, _cachedPosition.y, transform.position.z);
+
+                _cached3DPosition.x = _cachedPosition.x;
+                _cached3DPosition.y = _cachedPosition.y;
+                _cached3DPosition.z = transform.position.z;
+                
+                transform.position = _cached3DPosition;
             }
         }
 

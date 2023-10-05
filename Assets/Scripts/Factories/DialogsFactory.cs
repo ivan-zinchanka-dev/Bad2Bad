@@ -1,5 +1,6 @@
 ﻿using UI.Dialogs;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Factories
@@ -10,7 +11,7 @@ namespace Factories
         
         [Space]
         [SerializeField] private InventoryDialog _inventoryDialogPrefab;
-        //[] other dialogs
+        [SerializeField] private GameObject _defeatDialogPrefab;
 
         private DiContainer _diContainer;
         
@@ -23,8 +24,11 @@ namespace Factories
         public InventoryDialog ShowInventoryDialog()
         {
             return _diContainer.InstantiatePrefabForComponent<InventoryDialog>(_inventoryDialogPrefab, _dialogCanvas.transform);
-            
-            //return Instantiate<InventoryDialog>(_inventoryDialogPrefab, _dialogCanvas.transform, false);
+        }
+        
+        public void ShowDefeatDialog()
+        {
+            _diContainer.InstantiatePrefab(_defeatDialogPrefab, _dialogCanvas.transform);
         }
     }
 }

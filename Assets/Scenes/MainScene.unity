@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogCanvas: {fileID: 2119284184}
   _inventoryDialogPrefab: {fileID: 703867794344097085, guid: 1aab9a68dbaf87249b301dd5fc5933bc, type: 3}
+  _defeatDialogPrefab: {fileID: 1001034386123005049, guid: 401f14785f15b2e4a8cb5cafb08464e3, type: 3}
 --- !u!114 &75923556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 2110466991}
   _interpolationSpeed: 3
+  _destroyWithTarget: 0
 --- !u!1 &637372126
 GameObject:
   m_ObjectHideFlags: 0

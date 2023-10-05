@@ -20,16 +20,17 @@ namespace Management
         
         private DiContainer _diContainer;
         private CollectablesFactory _collectablesFactory;
+        private DialogsFactory _dialogsFactory;
         
         public GameObject Player => _player;
 
         [Inject]
-        private void InjectDependencies(DiContainer diContainer, CollectablesFactory collectablesFactory)
+        private void InjectDependencies(DiContainer diContainer, CollectablesFactory collectablesFactory, DialogsFactory dialogsFactory)
         {
             _diContainer = diContainer;
             _collectablesFactory = collectablesFactory;
+            _dialogsFactory = dialogsFactory;
         }
-        
         
         private T GetRandomItem<T>(List<T> collection)
         {
@@ -65,6 +66,14 @@ namespace Management
         {
             SpawnLoot();
             SpawnEnemies();
+
+            _player.GetComponent<HealthBody>().OnDeath.AddListener(Defeat);
+        }
+
+        private void Defeat()
+        {
+            Time.timeScale = 0.0f;
+            _dialogsFactory.ShowDefeatDialog();
         }
     }
 }

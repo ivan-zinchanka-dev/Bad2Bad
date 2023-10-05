@@ -1,4 +1,5 @@
 ﻿using System;
+using Controllers.Common;
 using UnityEngine;
 
 namespace Controllers
@@ -23,10 +24,5 @@ namespace Controllers
                 Release();
             }
         }
-
-        /*private void Release()
-        {
-            Destroy(gameObject);
-        }*/
     }
 }
