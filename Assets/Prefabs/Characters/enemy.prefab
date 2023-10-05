@@ -84,7 +84,7 @@ MonoBehaviour:
   _viewingRange: 9.75
   _shootingRange: 7
   _movingSpeed: 3
-  _minDistance: 1.5
+  _minDistance: 5
   _healthBody: {fileID: 4881449569070084105}
   _shootingController: {fileID: 2367188152286374717}
   _rigidbody: {fileID: 4881449569070084106}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a55863aca04fe88ed1f477c70ab8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 30
   _view: {fileID: 0}
   _onHealthUpdate:
     m_PersistentCalls:
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4881449569070084109}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
