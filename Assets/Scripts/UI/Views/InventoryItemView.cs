@@ -14,10 +14,18 @@ namespace UI.Views
         [SerializeField] private Button _selectButton;
         [SerializeField] private Image _selectedBackground;
         
+        private static readonly List<InventoryItemView> AllItemViews = new List<InventoryItemView>();
+        public static InventoryItemView SelectedItemView => AllItemViews.Find(itemView => itemView.IsSelected);
+
+        public static event Action<InventoryItemView> OnItemSelected;
+        public static event Action<InventoryItemView> OnItemDeselected;
+        
         private InventoryItem _inventoryItem;
         private int _count;
-
         private bool _isSelected;
+        
+        public InventoryItem Model => _inventoryItem;
+        
         public bool IsSelected
         {
             get => _isSelected;
@@ -46,16 +54,6 @@ namespace UI.Views
             }
         }
 
-        
-        
-        private static readonly List<InventoryItemView> AllItemViews = new List<InventoryItemView>();
-        public static InventoryItemView SelectedItemView => AllItemViews.Find(itemView => itemView.IsSelected);
-
-        public static event Action<InventoryItemView> OnItemSelected;
-        public static event Action<InventoryItemView> OnItemDeselected;
-        
-        public InventoryItem Model => _inventoryItem;
-        
         private void Awake()
         {
             AllItemViews.Add(this);

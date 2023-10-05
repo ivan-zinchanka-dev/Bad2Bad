@@ -9,7 +9,7 @@ namespace Controllers.Common
         private float _lifetime;
         private bool _isReleased;
         
-        public void SetPool(IObjectPool<T> objectPool, float maxLifetime = float.MaxValue)
+        public void Refresh(IObjectPool<T> objectPool, float maxLifetime = float.MaxValue)
         {
             _objectPool = objectPool;
             _lifetime = maxLifetime;

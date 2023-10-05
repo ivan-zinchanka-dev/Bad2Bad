@@ -1,6 +1,5 @@
 ﻿using UI.Dialogs;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Factories

@@ -50,7 +50,7 @@ namespace Factories
                 projectile.transform.position = spawnPosition;
                 projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, motionDirection);
                 projectile.Setup(motionDirection);
-                projectile.SetPool(pool, 10.0f);
+                projectile.Refresh(pool, 10.0f);
                 return projectile;
             }
             else

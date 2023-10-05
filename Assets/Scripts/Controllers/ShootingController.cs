@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Factories;
 using UnityEngine;
 using Zenject;
@@ -14,9 +13,7 @@ namespace Controllers
         [SerializeField] private Transform _shotSourcePoint;
         
         private float _timeBetweenShots;
-
         private ProjectilesFactory _projectilesFactory;
-
         private Coroutine _shootingRoutine;
         
         [Inject]
@@ -25,21 +22,6 @@ namespace Controllers
             _projectilesFactory = projectilesFactory;
         }
         
-        private void Shoot(Transform target)
-        {
-            Debug.Log("Shoot");
-            
-            if (target == null)
-            {
-                _projectilesFactory.CreateProjectile(_projectileType, _shotSourcePoint.position, transform.up);
-            }
-            else
-            {
-                Vector2 projectileMotionDirection = (target.position - transform.position).normalized;
-                _projectilesFactory.CreateProjectile(_projectileType, _shotSourcePoint.position, projectileMotionDirection);
-            }
-        }
-
         [EasyButtons.Button]
         public void ShootIfReady()
         {
@@ -55,12 +37,22 @@ namespace Controllers
             }
         }
 
+        private void Shoot(Transform target)
+        {
+            if (target == null)
+            {
+                _projectilesFactory.CreateProjectile(_projectileType, _shotSourcePoint.position, transform.up);
+            }
+            else
+            {
+                Vector2 projectileMotionDirection = (target.position - transform.position).normalized;
+                _projectilesFactory.CreateProjectile(_projectileType, _shotSourcePoint.position, projectileMotionDirection);
+            }
+        }
+        
         public void StartShooting(Transform target)
         {
-            if (_shootingRoutine == null)
-            {
-                _shootingRoutine = StartCoroutine(Shooting(target));
-            }
+            _shootingRoutine ??= StartCoroutine(Shooting(target));
         }
 
         private IEnumerator Shooting(Transform target)

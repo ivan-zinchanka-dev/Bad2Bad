@@ -54,7 +54,6 @@ namespace AI
         private void MoveToPlayer()
         {
             Transform playerTransform = _gameLevelManager.Player.transform;
-            
             Vector3 movingDirection = (playerTransform.position - transform.position).normalized;
             
             transform.rotation = Quaternion.LookRotation(Vector3.forward, movingDirection);
@@ -85,11 +84,11 @@ namespace AI
             Destroy(gameObject);
             _collectablesFactory.CreateCollectableItem(_onDeathLoot, transform.position);
         }
-        
-        
-        void Start()
-        {
 
+        private void Idle() { }
+
+        private void Start()
+        {
             _behaviorTree = new Root(
 
                 new Selector(
@@ -101,16 +100,14 @@ namespace AI
                                 new Condition(CanShootThePlayer, new Action(StartShootingThePlayer)),
                                 new Action(StopShootingThePlayer)
                             )
-                        
                         )),
                         
-                        new Action(()=>Debug.Log("Idle"))
+                        new Action(Idle)
                     )),
 
                     new Action(SelfDestroy)
                 )
             );
-            
             
             _behaviorTree.Start();
         }
@@ -123,7 +120,5 @@ namespace AI
             }
         }
     }
-    
-    
-    
+
 }

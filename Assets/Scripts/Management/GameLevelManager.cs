@@ -11,12 +11,11 @@ namespace Management
     public class GameLevelManager : MonoBehaviour
     {
         [SerializeField] private GameObject _enemyPrefab;
-        
-        [SerializeField] private GameObject _player;
         [SerializeField] private List<InventoryItem> _loot;
-
         [SerializeField] private Rect _lootSpawnField;
         [SerializeField] private Rect _enemySpawnField;
+        
+        [SerializeField] private GameObject _player;
         
         private DiContainer _diContainer;
         private CollectablesFactory _collectablesFactory;
