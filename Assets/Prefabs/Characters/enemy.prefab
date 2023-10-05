@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3728303139719749583}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: projectile_source_point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4881449569070084105}
   - component: {fileID: 4881449569070084106}
   - component: {fileID: 4881449569070084107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4881449569070084109}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -181,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4881449570175707111}
   - component: {fileID: 4881449570175707110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

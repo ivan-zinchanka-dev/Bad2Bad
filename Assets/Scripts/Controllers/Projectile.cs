@@ -8,7 +8,7 @@ namespace Controllers
         [SerializeField] private int _damage;
         [SerializeField] private float _speed;
         [SerializeField] private Rigidbody2D _rigidbody;
-
+        
         public Projectile Setup(Vector2 direction)
         {
             _rigidbody.velocity = direction * _speed;
@@ -19,7 +19,6 @@ namespace Controllers
         {
             if (other.gameObject.TryGetComponent<HealthBody>(out HealthBody healthBody))
             {
-                Debug.Log("Yes");
                 healthBody.MakeDamage(_damage);
                 Release();
             }
