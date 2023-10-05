@@ -91,7 +91,7 @@ namespace UI.Views
                 return;
             
             _icon.sprite = _inventoryItem.Icon;
-            _countTextMesh.SetText(_count > 0 ? _count.ToString() : string.Empty);
+            _countTextMesh.SetText(_count > 1 ? _count.ToString() : string.Empty);
         }
 
         private void OnDisable()

@@ -61,30 +61,7 @@ namespace UI.Dialogs
                 _itemModelViews.Add(itemModel, itemView);
             }
         }
-
         
-
-        /*private LinkedList<InventoryItemView> _itemViews;
-
-        private InventoryItemView GetView(int cellIndex)
-        {
-            if (cellIndex < 0) 
-                return null;
-
-            if (cellIndex < _itemViews.Count)
-            {
-                return _itemViews[cellIndex];
-            }
-            else
-            {
-                _itemViews.Add();
-            }
-
-
-
-        }*/
-
-
         private void OnItemSelected(InventoryItemView selectedItemView)
         {
             _removeItemButton.gameObject.SetActive(true);
