@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239c0685389f4fadbcf950c20b6f463b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectileType: 2
   _shootingCooldown: 1
   _shotSourcePoint: {fileID: 3728303139719749583}
 --- !u!114 &4881449569070084105

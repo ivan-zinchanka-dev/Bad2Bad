@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239c0685389f4fadbcf950c20b6f463b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectileType: 1
   _shootingCooldown: 0.25
   _shotSourcePoint: {fileID: 4536746785223629182}
 --- !u!114 &7772956309752685744

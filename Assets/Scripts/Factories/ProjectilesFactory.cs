@@ -1,16 +1,85 @@
-﻿using Controllers;
+﻿using System;
+using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
+using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 namespace Factories
 {
     public class ProjectilesFactory : MonoBehaviour
     {
-        [SerializeField] private Projectile _defaultProjectilePrefab;
+        [SerializeField] private List<ProjectilePoolData> _poolsData;
 
-        public Projectile CreateProjectile(Vector3 spawnPosition, Vector3 motionDirection)
+        /*[SerializeField] private Projectile _bulletPrefab;
+        [SerializeField] private Projectile _acidPrefab;*/
+
+        [Serializable]
+        public struct ProjectilePoolData
         {
-            return Instantiate(_defaultProjectilePrefab, spawnPosition, 
-                    Quaternion.LookRotation(Vector3.forward, motionDirection)).Setup(motionDirection);
+            [field:SerializeField] public ProjectileType ProjectileType { get; private set; }
+            [field:SerializeField] public Projectile ProjectilePrefab { get; private set; }
+            [field:SerializeField] public int InitialPoolCapacity { get; private set; }
         }
+        
+        private Dictionary<ProjectileType, IObjectPool<Projectile>> _pools;
+
+        private void Awake()
+        {
+            _pools = new Dictionary<ProjectileType, IObjectPool<Projectile>>(_poolsData.Count);
+            
+            foreach (ProjectilePoolData data in _poolsData)
+            {
+                _pools.Add(data.ProjectileType, new ObjectPool<Projectile>(() => Instantiate<Projectile>(data.ProjectilePrefab), 
+                        OnTakeFromPool, OnReturnedToPool, null, 
+                        true, data.InitialPoolCapacity));
+            }
+            
+        }
+
+        private static void OnTakeFromPool(Projectile projectile)
+        {
+            projectile.gameObject.SetActive(true);
+        }
+        
+        private static void OnReturnedToPool(Projectile projectile)
+        {
+            projectile.gameObject.SetActive(false);
+        }
+
+        public Projectile CreateProjectile(ProjectileType type, Vector3 spawnPosition, Vector3 motionDirection)
+        {
+            if (_pools.TryGetValue(type, out var pool))
+            {
+                Projectile projectile = pool.Get();
+                projectile.transform.position = spawnPosition;
+                projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, motionDirection);
+                projectile.Setup(motionDirection);
+                projectile.SetPool(pool);
+                return projectile;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private Projectile CreateProjectile(Projectile prefab, Vector3 spawnPosition, Vector3 motionDirection)
+        {
+            return Instantiate(prefab, spawnPosition, 
+                Quaternion.LookRotation(Vector3.forward, motionDirection)).Setup(motionDirection);
+        }
+        
+        /*public Projectile CreateBullet(Vector3 spawnPosition, Vector3 motionDirection)
+        {
+            return CreateProjectile(spawnPosition, motionDirection, _bulletPrefab);
+        }
+        
+        public Projectile CreateAcid(Vector3 spawnPosition, Vector3 motionDirection)
+        {
+            return CreateProjectile(spawnPosition, motionDirection, _acidPrefab);
+        }*/
+        
+        
     }
 }

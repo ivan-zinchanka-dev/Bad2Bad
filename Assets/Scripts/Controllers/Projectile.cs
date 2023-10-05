@@ -3,15 +3,12 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : PooledObject<Projectile>
     {
         [SerializeField] private int _damage;
         [SerializeField] private float _speed;
         [SerializeField] private Rigidbody2D _rigidbody;
-        //[SerializeField] private Collider2D _selfCollider;
 
-        //public Collider2D Collider => _selfCollider;
-        
         public Projectile Setup(Vector2 direction)
         {
             _rigidbody.velocity = direction * _speed;
@@ -24,13 +21,13 @@ namespace Controllers
             {
                 Debug.Log("Yes");
                 healthBody.MakeDamage(_damage);
-                SelfDestroy();
+                Release();
             }
         }
 
-        private void SelfDestroy()
+        /*private void Release()
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 }

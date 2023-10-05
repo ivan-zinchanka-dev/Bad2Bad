@@ -169,7 +169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca6fea38c1a4b4086cfd1b45381962c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultProjectilePrefab: {fileID: 1190057953109388927, guid: 566c9aa248b1fe74d872dc8bf4fa1cad, type: 3}
+  _poolsData:
+  - <ProjectileType>k__BackingField: 1
+    <ProjectilePrefab>k__BackingField: {fileID: 1190057953109388927, guid: 566c9aa248b1fe74d872dc8bf4fa1cad, type: 3}
+    <InitialPoolCapacity>k__BackingField: 10
+  - <ProjectileType>k__BackingField: 2
+    <ProjectilePrefab>k__BackingField: {fileID: 1190057953109388927, guid: 62e04fdbd49a9df4f8f8eedcaed50107, type: 3}
+    <InitialPoolCapacity>k__BackingField: 10
 --- !u!114 &75923554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +732,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -7.45, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

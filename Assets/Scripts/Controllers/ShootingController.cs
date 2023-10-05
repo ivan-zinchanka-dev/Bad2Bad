@@ -8,8 +8,9 @@ namespace Controllers
 {
     public class ShootingController : MonoBehaviour
     {
+        [SerializeField] private ProjectileType _projectileType;
         [SerializeField] private float _shootingCooldown = 1.0f;
-
+        
         [SerializeField] private Transform _shotSourcePoint;
         
         private float _timeBetweenShots;
@@ -30,12 +31,12 @@ namespace Controllers
             
             if (target == null)
             {
-                _projectilesFactory.CreateProjectile(_shotSourcePoint.position, transform.up);
+                _projectilesFactory.CreateProjectile(_projectileType, _shotSourcePoint.position, transform.up);
             }
             else
             {
                 Vector2 projectileMotionDirection = (target.position - transform.position).normalized;
-                _projectilesFactory.CreateProjectile(_shotSourcePoint.position, projectileMotionDirection);
+                _projectilesFactory.CreateProjectile(_projectileType, _shotSourcePoint.position, projectileMotionDirection);
             }
         }
 
