@@ -26,6 +26,8 @@ namespace Controllers
         
         private void Shoot(Transform target)
         {
+            Debug.Log("Shoot");
+            
             if (target == null)
             {
                 _projectilesFactory.CreateProjectile(_shotSourcePoint.position, transform.up);
@@ -54,7 +56,7 @@ namespace Controllers
 
         public void StartShooting(Transform target)
         {
-            if (_shootingRoutine != null)
+            if (_shootingRoutine == null)
             {
                 _shootingRoutine = StartCoroutine(Shooting(target));
             }

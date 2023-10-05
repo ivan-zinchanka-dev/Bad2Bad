@@ -54,22 +54,25 @@ namespace AI
         private void MoveToPlayer()
         {
             Transform playerTransform = _gameLevelManager.Player.transform;
-
-            Vector2 movingDirection = (playerTransform.position - transform.position).normalized;
             
+            Vector3 movingDirection = (playerTransform.position - transform.position).normalized;
+            
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, movingDirection);
             _rigidbody.velocity = movingDirection * _movingSpeed;
-            //Vector2.MoveTowards()
-            
         }
 
         private void StartShootingThePlayer()
         {
+            Debug.Log("Start shooting");
+            
             Transform playerTransform = _gameLevelManager.Player.transform;
             _shootingController.StartShooting(playerTransform);
         }
         
         private void StopShootingThePlayer()
         {
+            Debug.Log("Stop shooting");
+            
             _shootingController.StopShooting();
         }
 
@@ -89,24 +92,25 @@ namespace AI
             _behaviorTree = new Root(
 
                 new Selector(
-
                     new Condition(IsAlive, new Selector(
-
-                            new Action(()=>Debug.Log("Traget"))
-                        
-                        /*new Condition(SeesThePlayer, new Sequence(
+                        new Condition(SeesThePlayer, new Sequence(
+                            
+                            //new Action(()=>Debug.Log("Traget"))
                             
                             new Action(MoveToPlayer),
                             new Selector(
                                 new Condition(CanShootThePlayer, new Action(StartShootingThePlayer)),
                                 new Action(StopShootingThePlayer)
-                            ),
-                        new Action(()=>Debug.Log("Idle"))*/
+                            )
+                        
+                        )),
+                        
+                        new Action(()=>Debug.Log("Idle"))
                     )),
 
                     new Action(SelfDestroy)
-
-                ));//));
+                )
+            );
             
             
             _behaviorTree.Start();
