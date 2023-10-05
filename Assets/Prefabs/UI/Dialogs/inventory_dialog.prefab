@@ -176,6 +176,7 @@ MonoBehaviour:
   _hideArea: {fileID: 703867795766927809}
   _itemViewPrefab: {fileID: 5083446140632054035, guid: 24f8e426ca7a4374e88946376af3c276, type: 3}
   _gridLayout: {fileID: 6743571904130883153}
+  _removeItemButton: {fileID: 7058599566235875250}
 --- !u!1 &703867795189856847
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +609,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1772,7 +1773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 771133395948824440, guid: 24f8e426ca7a4374e88946376af3c276, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 380
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 771133395948824440, guid: 24f8e426ca7a4374e88946376af3c276, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1878,7 +1879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 771133395948824440, guid: 24f8e426ca7a4374e88946376af3c276, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 160
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 771133395948824440, guid: 24f8e426ca7a4374e88946376af3c276, type: 3}
       propertyPath: m_AnchoredPosition.y

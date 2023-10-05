@@ -19,7 +19,7 @@ namespace DataModels
             
             if (_counts.ContainsKey(itemName))
             {
-                _counts[itemName] += count;
+                _counts[itemName] += count; 
             }
             else
             {
@@ -54,6 +54,16 @@ namespace DataModels
             }
             else 
                 return true;
+        }
+
+        public int GetCountByNameKey(string nameKey)
+        {
+            if (_counts.TryGetValue(nameKey, out int count))
+            {
+                return count;
+            }
+
+            return 0;
         }
 
         public IEnumerator<KeyValuePair<string, int>> GetEnumerator()
