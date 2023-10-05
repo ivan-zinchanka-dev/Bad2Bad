@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1190233817360464165}
+    - target: {fileID: 4333722624062142487, guid: b95af2ae52cb3434bbe78849c4f7242f, type: 3}
+      propertyPath: _destroyWithTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8029224696153627739, guid: b95af2ae52cb3434bbe78849c4f7242f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.5
