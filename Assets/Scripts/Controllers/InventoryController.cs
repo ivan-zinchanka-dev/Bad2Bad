@@ -8,14 +8,18 @@ namespace Controllers
 {
     public class InventoryController : MonoBehaviour
     {
-        [SerializeField] private Inventory _inventory;
-
+        private Inventory _inventory;
         private DialogsFactory _dialogsFactory;
         
         [Inject]
         private void InjectDependencies(DialogsFactory dialogsFactory)
         {
             _dialogsFactory = dialogsFactory;
+        }
+
+        private void Start()
+        {
+            _inventory = new Inventory();
         }
 
         public void AddItem(InventoryItem item, int count)
@@ -28,6 +32,17 @@ namespace Controllers
             _inventory.RemoveItem(item.NameKey, count);
         }
         
+        public void OpenDialog()
+        {
+            _dialogsFactory.ShowInventoryDialog().SetModel(_inventory);
+        }
+
+        [EasyButtons.Button]
+        public void ClearInventory()
+        {
+            _inventory.Clear();
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent<CollectableItem>(out CollectableItem collectableItem))
@@ -35,11 +50,6 @@ namespace Controllers
                 AddItem(collectableItem.Item, collectableItem.Count);
                 collectableItem.Collect();
             }
-        }
-
-        public void OpenDialog()
-        {
-            _dialogsFactory.ShowInventoryDialog().SetModel(_inventory);
         }
     }
 }

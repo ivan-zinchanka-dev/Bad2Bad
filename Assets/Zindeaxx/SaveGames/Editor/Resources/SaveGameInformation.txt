@@ -1,0 +1,10 @@
+The Simple Saving package is an essential tool that allows users to save their data in a game.
+
+With this package, users can store values within a file that can be encrypted and loaded whenever needed in the game. The script has several methods that allow users to store and retrieve data in various formats, including strings, floats, integers, and vectors. 
+
+The script is customizable, and users can enable or disable encryption according to their needs. The script uses Newtonsoft.Json to serialize and deserialize the data, making it easier to save and load data in JSON format. 
+
+This package is easy to use, and the code is well documented, making it an excellent tool for beginners and experienced developers alike. So start by reading the documentation and start saving.
+
+
+The Simple Saving package is just one of the many tools I've created to help game developers improve their workflow and create amazing games. In addition to this package, I've also developed several other packages. So check them out by clicking the Asset Store button below!
